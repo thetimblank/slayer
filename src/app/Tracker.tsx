@@ -6,9 +6,10 @@ import NumberFlow from '@number-flow/react';
 import React, { useContext } from 'react';
 import List from './List';
 import Loader from '@/components/Loader';
+import { HiTrash } from 'react-icons/hi';
 
 const Tracker: React.FC = () => {
-	const { userdata, addKill, removeKill } = useContext(UserdataContext);
+	const { userdata, wipeUserdata, addKill, removeKill } = useContext(UserdataContext);
 
 	if (!userdata.loaded) {
 		return <Loader />;
@@ -16,6 +17,9 @@ const Tracker: React.FC = () => {
 
 	return (
 		<div className='center h-full'>
+			<button className='absolute top-0 right-0 m-10 icon' onClick={wipeUserdata}>
+				<HiTrash />
+			</button>
 			<div className='text-center flex items-center flex-col gap-5'>
 				<div>
 					<p className='text-highlight-500'>You need to kill</p>

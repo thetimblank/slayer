@@ -21,8 +21,7 @@ const List: React.FC = () => {
 						.reverse()
 						.map((kill, i) => (
 							<div key={i} className='flex gap-5'>
-								<p className='text-purple-600 font-black'>KILL</p>
-								<p>Took {kill.pace}s</p>
+								<p className='text-highlight-500 font-bold italic'>KILL TOOK {kill.pace}s</p>
 							</div>
 						))}
 				</>

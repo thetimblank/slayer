@@ -20,6 +20,7 @@ interface Userdata {
 interface C {
 	addKill: () => void;
 	removeKill: () => void;
+	wipeUserdata: () => void;
 	updateUserdata: (to: Partial<Userdata>) => void;
 	userdata: Userdata;
 }
@@ -41,6 +42,7 @@ const defaultUserdata = {
 export const UserdataContext = createContext<C>({
 	addKill: () => {},
 	removeKill: () => {},
+	wipeUserdata: () => {},
 	updateUserdata: () => {},
 	userdata: defaultUserdata,
 });
@@ -58,9 +60,10 @@ export const UserdataProvider: React.FC<P> = ({ children }) => {
 
 		if (userdata.kills.length > 0) {
 			pace = Number(
-				((time.getTime() - userdata.kills[userdata.kills.length - 1].date.getTime()) / 1000).toPrecision(
-					2
-				)
+				(
+					(time.getTime() - new Date(userdata.kills[userdata.kills.length - 1].date).getTime()) /
+					1000
+				).toPrecision(2)
 			);
 		}
 
@@ -105,7 +108,17 @@ export const UserdataProvider: React.FC<P> = ({ children }) => {
 			avg += kill.pace;
 		});
 
-		return (avg /= userdata.kills.length);
+		return Number((avg /= userdata.kills.length).toPrecision(2));
+	};
+
+	const wipeUserdata = () => {
+		if (typeof window === 'undefined') {
+			return;
+		}
+
+		window.localStorage.removeItem('userdata');
+
+		setUserdata(defaultUserdata);
 	};
 
 	useEffect(() => {
@@ -152,7 +165,7 @@ export const UserdataProvider: React.FC<P> = ({ children }) => {
 	}, [userdata]);
 
 	return (
-		<UserdataContext.Provider value={{ addKill, updateUserdata, removeKill, userdata }}>
+		<UserdataContext.Provider value={{ addKill, updateUserdata, wipeUserdata, removeKill, userdata }}>
 			{children}
 		</UserdataContext.Provider>
 	);
