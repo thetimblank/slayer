@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	color-scheme: light dark;
+	font-size: 16px;
+	line-height: 1;
+	font-weight: 400;
+
+	box-sizing: border-box;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	scroll-padding: 0;
+}
+
+/* Custom Scrollbar Styling */
+
+/* ::-webkit-scrollbar */
+::-webkit-scrollbar {
+	width: 20px;
+}
+
+/* ::-webkit-scrollbar-track */
+::-webkit-scrollbar-track {
+	@apply bg-transparent;
+}
+
+/* ::-webkit-scrollbar-thumb */
+::-webkit-scrollbar-thumb {
+	@apply rounded-2xl bg-lowlight-500 dark:bg-highlight-400 border-[5px] border-solid border-transparent bg-clip-padding cursor-pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-lowlight-600 dark:bg-highlight-500;
+}
+
+/* General Styles */
+
+/* * (global) */
+*:not(number-flow *) {
+	@apply relative m-0 p-0 box-border;
+}
+
+*:focus {
+	@apply border-none outline-none;
+}
+
+/* html and body */
+html,
+body {
+	@apply size-full scroll-smooth;
+}
+
+body {
+	@apply text-dark-700 fill-dark-700 dark:text-light-500 dark:fill-light-500 bg-light-500 dark:bg-dark-500 overflow-x-hidden overflow-y-auto;
+}
+
+body.scroll-locked {
+	width: calc(100% - 20px);
+	@apply overflow-y-hidden;
+}
+
+/* reset */
+
+a {
+	@apply inline-flex text-inherit no-underline;
+}
+
+hr {
+	@apply border-none;
+}
+
+code {
+	@apply font-mono;
+}
+
+button {
+	@apply bg-transparent font-body text-inherit;
+}
+
+svg {
+	@apply fill-inherit;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+	appearance: none;
+}
+
+/* default img alt */
+img::before {
+	content: '';
+	@apply absolute top-0 left-0 h-[calc(100%-2px)] w-full bg-dark-100 border-2 border-dashed border-highlight-100;
+}
+
+/* .center */
+.center {
+	@apply grid place-items-center;
+}
+
+/* .hr */
+.hr {
+	@apply border-b border-solid border-lowlight-300;
+}
+
+/* .input */
+.input {
+	@apply px-4 py-3 w-full resize-none bg-transparent border-2 border-lowlight-300 dark:border-highlight-300 border-solid  rounded-xl transition-all text-inherit
+	 text-xl;
+}
+
+.input::placeholder {
+	@apply text-light-100;
+}
+
+/* .input:invalid {
+	@apply border-red-400;
+} */
+
+/* .button */
+.button {
+	@apply relative flex items-center justify-center gap-2 text-light-900 fill-light-900 dark:text-dark-800 dark:fill-dark-800 font-title bg-dark-600 dark:bg-light-500 px-5 py-3 font-bold cursor-pointer rounded-xl transition-all;
+}
+.button:hover,
+.button:focus-visible {
+	@apply bg-dark-400 dark:bg-light-200;
+}
+
+.button:disabled {
+	@apply opacity-50 bg-dark-600 dark:bg-light-100 cursor-not-allowed;
+}
+
+.button:not(:disabled):active {
+	@apply animate-button-click;
+}
+
+/* .link */
+.link {
+	@apply cursor-pointer inline-flex gap-1 items-center text-link;
+}
+
+.link svg {
+	@apply fill-link;
+}
+
+.link:hover,
+.link:focus-visible {
+	@apply underline;
+}
+
+.link:disabled {
+	@apply opacity-50  cursor-not-allowed !no-underline;
+}
+
+/* .icon */
+.icon {
+	@apply transition-all rounded-full inline-flex p-2 cursor-pointer backdrop-blur-2xl bg-lowlight-200 dark:bg-highlight-300;
+}
+
+.icon:hover:not(.disabled),
+.icon:focus-visible:not(.disabled) {
+	@apply bg-lowlight-300 dark:bg-highlight-400;
+}
+
+/* .disabled */
+.disabled {
+	@apply opacity-50 !important;
+}
+
+.disabled {
+	cursor: not-allowed !important;
+}
+
+.disabled:active {
+	pointer-events: none !important;
+}
+
+/* .focusable */
+
+.focusable,
+.button,
+.input,
+.icon {
+	@apply outline-4 outline-transparent outline-offset-2;
+}
+
+.focusable:focus-visible,
+.button:focus-visible,
+.input:focus-visible,
+.icon:focus-visible {
+	@apply outline-focus;
+}
+
+@layer base {
+	:root {
+		--radius: 0.5rem;
+	}
+}
