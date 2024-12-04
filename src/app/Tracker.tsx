@@ -30,7 +30,7 @@ const Tracker: React.FC = () => {
 							locales='en-US'
 						/>
 					</div>
-					<p className='text-highlight-500'>more revenants</p>
+					<p className='text-highlight-500'>more slayer bosses</p>
 				</div>
 
 				<div className='flex max-sm:flex-col gap-10 xl:gap-20'>
